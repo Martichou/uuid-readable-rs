@@ -1,4 +1,4 @@
-//! Lists of words from mainly https://github.com/Debdut/uuid-readable
+//! Lists of words from mainly <https://github.com/Debdut/uuid-readable>
 
 pub mod adjectives;
 pub mod animals;

@@ -1,4 +1,35 @@
-//! TODO DOCUMENT THE LIB FOR CRATES.IO
+//! Generate easy to remember sentences that acts as human readable UUIDs.
+//!
+//! - Built on UUID v4
+//! - Optionally pass your UUID to derive a sentence from it
+//! - Grammatically _correct_ sentences
+//! - Easy to remember (or at least part of it)
+//! - Default (`generate()`) to 128 bits Token using the [UUID](https://docs.rs/uuid) crates.
+//! - Generate low entropy (`short()`) 32 bits Token
+//!
+//! ## Security
+//! This project does not mean to be crypto safe ! **Don't use this as a secure random generator**.
+//!
+//! Even if we derive sentences from UUID (that are crypto safe), there can still be some collision
+//! with 2 differents UUID but resulting in the same sentence.
+//!
+//! - `25^12` possible combinations for `generate()` (uses 128 bits Token)
+//! - `25^5` possible combinations for `short()` (uses 32 bits Token)
+//!
+//! ## Example
+//! ```
+//! use uuid::Uuid;
+//! use uuid_readable_rs::{generate_from, short_from, generate, short};
+//!
+//! // You can define your own UUID and pass it to uuid_readable_rs like so
+//! let uuid = Uuid::new_v4();
+//! let sentence_128: String = generate_from(uuid);
+//! let sentence_32: String = short_from(uuid);
+//!
+//! // Or let uuid_readable_rs handle the Uuid generation
+//! let sentence_128: String = generate();
+//! let sentence_32: String = short();
+//! ```
 
 use data::*;
 use uuid::Uuid;
@@ -10,12 +41,20 @@ use crate::data::{
 
 mod data;
 
+// TODO - To avoid losing entropy, we should have lists of:
+// - 2^12 elements for NORMAL[0]
+// - 2^11 elements for NORMAL[1]
+// - 2^14 elements for NORMAL[2]
+// - ...
+//
+// TODO - Add a reverse method for sentence -> uuid
+
 /// Mask used for the long version, this allow us to convert a 16 items
 /// totalling 128 bits into 12 items for the same number of bits.
 const NORMAL: [u8; 12] = [12, 11, 14, 13, 13, 10, 12, 11, 14, 5, 6, 7];
 /// Used for low entropy in the short methods. Higher chances of collisions
-/// between two generated sentences. 128 bits into 5 items.
-const SHORT: [u8; 5] = [17, 25, 30, 29, 27];
+/// between two generated sentences. 32 bits into 5 items.
+const SHORT: [u8; 5] = [6, 6, 7, 8, 5];
 
 /// Convert an array of bytes to a Vec to individuals bits (1-0)
 fn to_bits(bytes: &[u8]) -> Vec<u8> {
@@ -36,7 +75,7 @@ fn to_bits(bytes: &[u8]) -> Vec<u8> {
 fn to_byte(bits: &[u8]) -> u16 {
     let mut _byte = 0u16;
     for b in bits {
-        _byte = 2 * (_byte % 32766) + *b as u16;
+        _byte = 2 * _byte + *b as u16;
     }
     _byte
 }
@@ -55,7 +94,6 @@ fn partition(parts: &[u8], bytes: &[u8]) -> [usize; 12] {
 }
 
 #[inline]
-/// TODO - Document
 fn _generate(uuid: &Uuid) -> String {
     // Convert the Uuid to an array of bytes
     let uuid = uuid.as_bytes();
@@ -80,7 +118,9 @@ fn _generate(uuid: &Uuid) -> String {
     )
 }
 
-/// TODO - Document
+/// Create a long sentence using a new random uuid.
+///
+/// Example of return: `Joy Bolt Kahler the avenger of Esbon jumped Carey Fatma Sander and 8 large ducks`
 pub fn generate() -> String {
     // Generate a new Uuid using the v4 RFC
     let uuid = Uuid::new_v4();
@@ -88,14 +128,15 @@ pub fn generate() -> String {
     _generate(&uuid)
 }
 
-/// TODO - Document
+/// Derive a long sentence from a uuid.
+///
+/// Example of return: `Joy Bolt Kahler the avenger of Esbon jumped Carey Fatma Sander and 8 large ducks`
 pub fn generate_from(uuid: Uuid) -> String {
     // Create the sentence from the Uuid
     _generate(&uuid)
 }
 
 #[inline]
-/// TODO - Document
 fn _short(uuid: &Uuid) -> String {
     // Convert the Uuid to an array of bytes
     let uuid = uuid.as_bytes();
@@ -113,7 +154,9 @@ fn _short(uuid: &Uuid) -> String {
     )
 }
 
-/// TODO - Document
+/// Create a short sentence using a new random uuid.
+///
+/// Example of return: `Alex sang by 60 narrow chickens`
 pub fn short() -> String {
     // Generate a new Uuid using the v4 RFC
     let uuid = Uuid::new_v4();
@@ -121,7 +164,9 @@ pub fn short() -> String {
     _short(&uuid)
 }
 
-/// TODO - Document
+/// Derive a short sentence from a uuid.
+///
+/// Example of return: `Alex sang by 60 narrow chickens`
 pub fn short_from(uuid: Uuid) -> String {
     // Create the sentence from the Uuid
     _short(&uuid)
@@ -138,5 +183,5 @@ fn sanity() {
     );
 
     let s = short_from(uuid);
-    assert_eq!(s, "Cookie snuggled by 45 far weasels");
+    assert_eq!(s, "Alex sang by 60 narrow chickens");
 }
