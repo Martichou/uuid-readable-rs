@@ -1,3 +1,5 @@
+//! TODO DOCUMENT THE LIB FOR CRATES.IO
+
 use data::*;
 use uuid::Uuid;
 
@@ -53,6 +55,7 @@ fn partition(parts: &[u8], bytes: &[u8]) -> [usize; 12] {
 }
 
 #[inline]
+/// TODO - Document
 fn _generate(uuid: &Uuid) -> String {
     // Convert the Uuid to an array of bytes
     let uuid = uuid.as_bytes();
@@ -77,6 +80,7 @@ fn _generate(uuid: &Uuid) -> String {
     )
 }
 
+/// TODO - Document
 pub fn generate() -> String {
     // Generate a new Uuid using the v4 RFC
     let uuid = Uuid::new_v4();
@@ -84,12 +88,14 @@ pub fn generate() -> String {
     _generate(&uuid)
 }
 
+/// TODO - Document
 pub fn generate_from(uuid: Uuid) -> String {
     // Create the sentence from the Uuid
     _generate(&uuid)
 }
 
 #[inline]
+/// TODO - Document
 fn _short(uuid: &Uuid) -> String {
     // Convert the Uuid to an array of bytes
     let uuid = uuid.as_bytes();
@@ -107,6 +113,7 @@ fn _short(uuid: &Uuid) -> String {
     )
 }
 
+/// TODO - Document
 pub fn short() -> String {
     // Generate a new Uuid using the v4 RFC
     let uuid = Uuid::new_v4();
@@ -114,6 +121,7 @@ pub fn short() -> String {
     _short(&uuid)
 }
 
+/// TODO - Document
 pub fn short_from(uuid: Uuid) -> String {
     // Create the sentence from the Uuid
     _short(&uuid)
