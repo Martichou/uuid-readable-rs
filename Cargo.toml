@@ -7,3 +7,18 @@ edition = "2018"
 
 [dependencies]
 uuid = { version = "0.8", features = ["v4"] }
+
+[dev-dependencies]
+criterion = "0.3"
+
+[profile.release]
+lto = true
+opt-level = 3
+codegen-units = 1
+
+[lib]
+bench = false
+
+[[bench]]
+name = "main_bench"
+harness = false
