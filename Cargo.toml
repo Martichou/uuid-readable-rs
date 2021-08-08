@@ -1,7 +1,16 @@
 [package]
 name = "uuid-readable-rs"
 version = "0.1.0"
+authors = ["Martichou <martichou.andre@gmail.com>"]
 edition = "2018"
+documentation = "https://docs.rs/uuid-readable-rs"
+repository = "https://github.com/Martichou/uuid-readable-rs"
+description = "Easy to remember unique sentences acting as UUID"
+keywords = ["id", "uuid", "shortid", "uuid-v4", "unique"]
+license = "AGPL-3.0"
+readme = "README.md"
+
+categories = ["data-structures", "parser-implementations"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
