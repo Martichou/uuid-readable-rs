@@ -459,4 +459,19 @@ mod tests {
         let byte = to_byte(&bits);
         assert_eq!(byte, 41);
     }
+
+    #[test]
+    fn test_compatibility() {
+        let uuid = Uuid::parse_str("00000000-0000-0000-0000-000000000000").unwrap();
+        let zeroed = generate_from(uuid);
+        assert_eq!(zeroed, "Fusco Fusco Fusco the muleteer of Katy suspended Fusco Fusco Fusco and 0 mysterious rooks");
+
+        let uuid = Uuid::parse_str("ffffffff-ffff-ffff-ffff-ffffffffffff").unwrap();
+        let full = generate_from(uuid);
+        assert_eq!(full, "Antone Concordia Katharyn the minister of Mosinee trotted Antone Concordia Katharyn and 31 slow hogs");
+
+        let uuid = Uuid::parse_str("FFFFFFF0-FFFF-FFFF-FFFF-FFFFFFFFFFFF").unwrap();
+        let strange = generate_from(uuid);
+        assert_eq!(strange, "Antone Concordia Caravette the minister of Mosinee trotted Antone Concordia Katharyn and 31 slow hogs");
+    }
 }
