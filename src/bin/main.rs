@@ -9,6 +9,6 @@ fn main() {
     println!("Decoded uuid = {}", generate_inverse(&x).unwrap());
     println!("Original uuid = {}\n", &uuid);
 
-    println!("Random full-lenght = {}", generate());
-    println!("Random short-lenght = {}", short());
+    println!("Random full-length = {}", generate());
+    println!("Random short-length = {}", short());
 }

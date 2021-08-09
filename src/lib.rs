@@ -7,10 +7,10 @@
 //! - Size choice (32-bit token or 128-bit token using `short()` or `generate()` respectively)
 //!
 //! ## Security
-//! This project does not mean to be crypto safe ! **Don't use this as a secure random generator**.
+//! This project does not mean to be crypto safe! **Don't use this as a secure random generator**.
 //!
 //! Even if we derive sentences from UUID (that are crypto safe), there can still be some collision
-//! with 2 differents UUID but resulting in the same sentence.
+//! with 2 different UUID but resulting in the same sentence.
 //!
 //! - `25^12` possible combinations for `generate()` (uses 128-bit Token)
 //! - `25^5` possible combinations for `short()` (uses 32-bit Token)
@@ -131,12 +131,12 @@ fn to_bits_parted(bytes: &[u16]) -> Vec<u8> {
     bits
 }
 
-/// Helper used to convert a single digit (u16) into a Vec of indiviuals bits (1-0)
+/// Helper used to convert a single digit (u16) into a Vec of individuals bits (1-0)
 #[inline]
-fn u16_to_bits(mut b: u16, lenght: u8) -> Vec<u8> {
-    let mut bits = Vec::with_capacity(lenght as usize);
+fn u16_to_bits(mut b: u16, length: u8) -> Vec<u8> {
+    let mut bits = Vec::with_capacity(length as usize);
 
-    for _ in 0..lenght {
+    for _ in 0..length {
         bits.push((b % 2) as u8);
         b >>= 1;
     }
@@ -329,19 +329,19 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_adjvectives_sanity() {
+    fn test_adjectives_sanity() {
         let mut tmp_vec = ADJECTIVES.to_vec();
 
         for x in &tmp_vec {
             assert!(!x.contains(" "));
         }
 
-        let original_lenght = tmp_vec.len();
+        let original_length = tmp_vec.len();
         tmp_vec.sort();
         tmp_vec.dedup();
-        let final_lenght = tmp_vec.len();
+        let final_length = tmp_vec.len();
 
-        assert_eq!(original_lenght, final_lenght);
+        assert_eq!(original_length, final_length);
     }
 
     #[test]
@@ -352,12 +352,12 @@ mod tests {
             assert!(!x.contains(" "));
         }
 
-        let original_lenght = tmp_vec.len();
+        let original_length = tmp_vec.len();
         tmp_vec.sort();
         tmp_vec.dedup();
-        let final_lenght = tmp_vec.len();
+        let final_length = tmp_vec.len();
 
-        assert_eq!(original_lenght, final_lenght);
+        assert_eq!(original_length, final_length);
     }
 
     #[test]
@@ -368,12 +368,12 @@ mod tests {
             assert!(!x.contains(" "));
         }
 
-        let original_lenght = tmp_vec.len();
+        let original_length = tmp_vec.len();
         tmp_vec.sort();
         tmp_vec.dedup();
-        let final_lenght = tmp_vec.len();
+        let final_length = tmp_vec.len();
 
-        assert_eq!(original_lenght, final_lenght);
+        assert_eq!(original_length, final_length);
     }
 
     #[test]
@@ -384,12 +384,12 @@ mod tests {
             assert!(!x.contains(" "));
         }
 
-        let original_lenght = tmp_vec.len();
+        let original_length = tmp_vec.len();
         tmp_vec.sort();
         tmp_vec.dedup();
-        let final_lenght = tmp_vec.len();
+        let final_length = tmp_vec.len();
 
-        assert_eq!(original_lenght, final_lenght);
+        assert_eq!(original_length, final_length);
     }
 
     #[test]
@@ -400,12 +400,12 @@ mod tests {
             assert!(!x.contains(" "));
         }
 
-        let original_lenght = tmp_vec.len();
+        let original_length = tmp_vec.len();
         tmp_vec.sort();
         tmp_vec.dedup();
-        let final_lenght = tmp_vec.len();
+        let final_length = tmp_vec.len();
 
-        assert_eq!(original_lenght, final_lenght);
+        assert_eq!(original_length, final_length);
     }
 
     #[test]
@@ -416,12 +416,12 @@ mod tests {
             assert!(!x.contains(" "));
         }
 
-        let original_lenght = tmp_vec.len();
+        let original_length = tmp_vec.len();
         tmp_vec.sort();
         tmp_vec.dedup();
-        let final_lenght = tmp_vec.len();
+        let final_length = tmp_vec.len();
 
-        assert_eq!(original_lenght, final_lenght);
+        assert_eq!(original_length, final_length);
     }
 
     #[test]
@@ -451,7 +451,7 @@ mod tests {
     }
 
     #[test]
-    fn test_bits_convertion() {
+    fn test_bits_conversion() {
         let arr = [41];
         let bits = to_bits(&arr);
         assert_eq!(bits, vec![0, 0, 1, 0, 1, 0, 0, 1]);
