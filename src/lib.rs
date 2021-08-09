@@ -9,9 +9,6 @@
 //! ## Security
 //! This project does not mean to be crypto safe! **Don't use this as a secure random generator**.
 //!
-//! Even if we derive sentences from UUID (that are crypto safe), there can still be some collision
-//! with 2 different UUID but resulting in the same sentence.
-//!
 //! - `25^12` possible combinations for `generate()` (uses 128-bit Token)
 //! - `25^5` possible combinations for `short()` (uses 32-bit Token)
 //!
