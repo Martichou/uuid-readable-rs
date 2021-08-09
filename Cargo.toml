@@ -1,6 +1,6 @@
 [package]
 name = "uuid-readable-rs"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Martichou <martichou.andre@gmail.com>"]
 edition = "2018"
 documentation = "https://docs.rs/uuid-readable-rs"
