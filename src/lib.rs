@@ -471,4 +471,15 @@ mod tests {
         let strange = generate_from(uuid);
         assert_eq!(strange, "Antone Concordia Caravette the minister of Mosinee trotted Antone Concordia Katharyn and 31 slow hogs");
     }
+
+    #[test]
+    fn test_bad_inverse() {
+        let sentence = "109812 ???./ ` the muleteer of Katy suspended Fusco Fusco Fusco and 0 mysterious rooks";
+        let rev = generate_inverse(sentence);
+        assert!(rev.is_err());
+
+        let sentence = "109812 ???./\0zdqdqz";
+        let rev = generate_inverse(sentence);
+        assert!(rev.is_err());
+    }
 }
