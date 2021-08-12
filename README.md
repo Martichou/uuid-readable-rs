@@ -8,6 +8,7 @@
 [![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](LICENSE)
 [![crates.io](https://img.shields.io/crates/v/uuid-readable-rs.svg)](https://crates.io/crates/uuid-readable-rs)
 [![Released API docs](https://docs.rs/uuid-readable-rs/badge.svg)](https://docs.rs/uuid-readable-rs)
+[![CI](https://github.com/Martichou/uuid-readable-rs/workflows/CI/badge.svg)](https://github.com/Martichou/uuid-readable-rs/actions)
 
   </p>
 </div>
