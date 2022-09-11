@@ -21,6 +21,12 @@ Generate easy to remember sentences that acts as human readable UUIDs.
 - Easy to remember (or at least part of it)
 - Size choice (32-bit token or 128-bit token using `short()` or `generate()` respectively)
 
+## Status
+Even if this project doesn't receive a lot of update, it's not abandonned.
+
+There's just not much to do as any changes would pretty much break the entire compatibility.
+But if any security issue arise, I'll take care of it asap.
+
 ## Security
 This project does not mean to be crypto safe ! **Don't use this as a secure random generator**.
 
