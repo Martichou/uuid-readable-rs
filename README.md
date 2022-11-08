@@ -87,3 +87,9 @@ assert_eq!(uuid, original_uuid);
 let sentence_128: String = generate();
 let sentence_32: String = short();
 ```
+
+## Credits
+
+Thanks to @Debdut for the original idea (https://github.com/Debdut/uuid-readable).
+
+_<sub>note: his version may not be suitable to use at the moment until https://github.com/Debdut/uuid-readable/issues/8 get fixed.</sub>_
