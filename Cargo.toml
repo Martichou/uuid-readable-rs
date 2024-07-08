@@ -16,10 +16,10 @@ categories = ["data-structures", "parser-implementations"]
 
 [dependencies]
 anyhow = "1.0"
-uuid = { version = "0.8", features = ["v4"] }
+uuid = { version = "1.9", features = ["v4"] }
 
 [dev-dependencies]
-criterion = "0.3"
+criterion = "0.5"
 
 [profile.release]
 lto = true
